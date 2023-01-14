@@ -4,9 +4,8 @@
 #                                                                                     
 #
 #   Author      :   V. Vutov                                                                
-#   Purpose     :   Applying the Multi-PFA procedure to a real MALDI data and 
-#                      discovering the most associative m/z values for each cancer subtype.
-#
+#   Purpose     :   This script executes the Multi-PFA methodology, the data analysis of MALDI data, 
+#                    that contains three cancer subtypes. 
 #
 #    R Version   :       R-4.1.2                                                                
 #   
