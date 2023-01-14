@@ -1,4 +1,4 @@
-mmm = function(X., y., dispersion = FALSE){
+mmm = function(X., y.){
     
     n <-  dim(X.)[1]; p <-  dim(X.)[2]
     
@@ -23,21 +23,9 @@ mmm = function(X., y., dispersion = FALSE){
         
         B <-  getScore(object  = mult.model, Z = cbind(1, X.[,j])) 
         
-        
-        if(dispersion == FALSE){
-            
-            V1 <- vcov(mult.model)
-            
-        } 
-        
-        if(dispersion == TRUE){ 
-            
-            phi <- overdispersion(object = mult.model)  
-            
-            V1 <-  vcov_disp(object = mult.model, ovds = phi)
-        }
-     
-        
+          
+         V1 <- vcov(mult.model)
+             
         pattern <- pat_vcov(n_cl = n_class)
         
         V = V1[, c(pattern)]
@@ -99,7 +87,7 @@ multi_pfa <- function(X, y, tval = list(), reg = "L1", K = list(), m = 0.95, dis
     if(is.matrix(y) && dim(y)[2] > 6){
         stop("The recent version of the package is limitied up to six classes.")}
     
-    marginal_models <- mmm(X. = X, y. = y, dispersion = dispersion)
+    marginal_models <- mmm(X. = X, y. = y)
     
     if((is.vector(y) && length(unique(y)) == 3) ||
         (is.matrix(y) && dim(y)[2] == 3)){

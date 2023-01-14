@@ -1,3 +1,6 @@
+#############
+# A chunk of code taken from the function pfa:pfa.test()
+#############
 pfa = function (Z, Sigma, t, Kmax, reg = "L1", e = 0.05, gamma, K, 
                 plot = "-log",  m = 0.95) {
   
