@@ -299,52 +299,70 @@
     dev.off()
     
     
+    ######################################################################
+    
+    marg_quant <- getMargQuants(y = Y, X = mz_values)
+    
     ############################################
     ### Table with comparisons of FDR procedures.
     ###########################################
+    
+    ##########################################
+    ## TABLE 7 Panc vs. ADC 
+    #########################################
+    
     p.val_cl1 <- multi.pfa.maldi$fdp_class.1_class.3$Pvalue$p.value
+    
+    mmm_cl1 <- fdr.control(p.val_cl1)
+    
+    marg_cl1 <- fdr.control(marg_quant$pval1)
+    
+    mmm_efron_cl1 <- fdr.control.efron(multi.pfa.maldi$fdp_class.1_class.3$Zval)
+    
+    marg_efron_cl1 <- fdr.control.efron(marg_quant$zval1)
+    
+    fdr_panc_vs_adc <- data.frame(Multi_PFA = rejects_panc_vs_adc[c(6, 4, 1)],
+                                    BH = mmm_cl1$rejects_BH, 
+                                    BY = mmm_cl1$rejects_BY,
+                                    BH_marg = marg_cl1$rejects_BH,
+                                    BY_marg = marg_cl1$rejects_BY,
+                                    BH_Efron = mmm_efron_cl1$BH_Efron,
+                                    BY_Efron = mmm_efron_cl1$BY_Efron,
+                                    BH_Efron_marg = marg_efron_cl1$BH_Efron,
+                                    BY_Efron_marg = marg_efron_cl1$BY_Efron)
+    
+    library(xtable)
+    print(xtable(fdr_panc_vs_adc, type = "latex"), file = "./results/filename7a.tex")
+    
+    ##########################################
+    ## TABLE 7 Panc vs. SqCC 
+    #########################################
     
     p.val_cl2 <- multi.pfa.maldi$fdp_class.2_class.3$Pvalue$p.value
     
-    BH_class_1 <- p.adjust(p.val_cl1, method = "BH"); BH_class_2 <-  p.adjust(p.val_cl2, method = "BH")  
+    mmm_cl2 <- fdr.control(p.val_cl2)
     
-    BY_class_1 <- p.adjust(p.val_cl1, method = "BY"); BY_class_2 <-  p.adjust(p.val_cl2, method = "BY")  
+    marg_cl2 <- fdr.control(marg_quant$pval2)
     
-    rejects_panc_vs_adc <- table_results_panc_vs_adc[, 2]
+    mmm_efron_cl2 <- fdr.control.efron(multi.pfa.maldi$fdp_class.2_class.3$Zval)
     
-    reject_panc_vs_adv_BH <- c(length(BH_class_1[BH_class_1 <= 0.05]),
-                               length(BH_class_1[BH_class_1 <= 0.1]), 
-                               length(BH_class_1[BH_class_1 <= 0.15]))
+    marg_efron_cl2 <- fdr.control.efron(marg_quant$zval2)
     
-    reject_panc_vs_adv_BY <- c(length(BY_class_1[BY_class_1 <= 0.05]),
-                               length(BY_class_1[BY_class_1 <= 0.1]), 
-                               length(BY_class_1[BY_class_1 <= 0.15]))
+    fdr_panc_vs_sqcc <- data.frame(Multi_PFA = rejects_panc_vs_sqcc[c(6, 5, 1)],
+                                   BH = mmm_cl2$rejects_BH, 
+                                   BY = mmm_cl2$rejects_BY,
+                                   BH_marg = marg_cl2$rejects_BH,
+                                   BY_marg = marg_cl2$rejects_BY,
+                                   BH_Efron = mmm_efron_cl2$BH_Efron,
+                                   BY_Efron = mmm_efron_cl2$BY_Efron,
+                                   BH_Efron_marg = marg_efron_cl2$BH_Efron,
+                                   BY_Efron_marg = marg_efron_cl2$BY_Efron)
     
-    table_comparisons_panc_vs_adc <- data.frame(Multi_PFA = rejects_panc_vs_adc[c(6, 4, 1)],
-                                                BH = reject_panc_vs_adv_BH, 
-                                                BY = reject_panc_vs_adv_BY)
-    
-    ######################################################################
-    
-    
-    rejects_panc_vs_sqcc <- table_results_panc_vs_sqcc[, 2]
-    
-    reject_panc_vs_sqcc_BH <- c(length(BH_class_2[BH_class_2 <= 0.05]),
-                                length(BH_class_2[BH_class_2 <= 0.1]), 
-                                length(BH_class_2[BH_class_2 <= 0.15]))
-    
-    reject_panc_vs_sqcc_BY <- c(length(BY_class_2[BY_class_2 <= 0.05]),
-                                length(BY_class_2[BY_class_2 <= 0.1]), 
-                                length(BY_class_2[BY_class_2 <= 0.15]))
-    
-    table_comparisons_panc_vs_sqcc <- data.frame(Multi_PFA = rejects_panc_vs_sqcc[c(6, 5, 1)],
-                                                 BH = reject_panc_vs_sqcc_BH, 
-                                                 BY = reject_panc_vs_sqcc_BY)
+    print(xtable(fdr_panc_vs_sqcc, type = "latex"), file = "./results/filename7b.tex")
     
     
     
     
- 
     
     
     
