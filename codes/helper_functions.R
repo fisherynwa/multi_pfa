@@ -22,20 +22,7 @@
         return(scoreVectors)
     }
     
-    overdispersion <- function(object){
-        
-        ovds <- sum(residuals(object, type = "pearson")^2)/(object@df.residual)
-        
-        ovds
-    }
-    
-    
-    vcov_disp <- function(object, ovds){
-        
-        vcov.tilde <- ovds * vcov(object)
-        
-        vcov.tilde
-    }
+  
     pat_vcov <- function(n_cl = n_class){
         
         if(n_cl == 3){pattern <- c(1, 3, 2, 4)}

@@ -1,9 +1,11 @@
 #############
-# A chunk of code taken from the function pfa:pfa.test()
+# This function is taken from pfa:pfa.gwas()
 #############
+
 pfa = function (Z, Sigma, t, Kmax, reg = "L1", e = 0.05, gamma, K, 
                 plot = "-log",  m = 0.95) {
-  
+				
+  ## Vladimir Vutov added the additional parameter m.
   Z <- as.vector(Z)
   Sigma <- as.matrix(Sigma)
   p <- length(Z)
@@ -50,7 +52,7 @@ pfa = function (Z, Sigma, t, Kmax, reg = "L1", e = 0.05, gamma, K,
   t.default <- TRUE
   
   if (!missing(t)) {
-    # if (t == "pval") { # Vladimir Vutov comments this section, on 05/12/2022
+    # if (t == "pval") { # Vladimir Vutov comments this section, on 05/12/2021
     # 
     #   t <- P
     #  t.default <- FALSE

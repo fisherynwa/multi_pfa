@@ -3,11 +3,18 @@
 #   Filename    :	case_study.R    												  
 #                                                                                     
 #
-#   Author      :   V. Vutov                                                                
-#   Purpose     :   This script executes the Multi-PFA methodology, the data analysis of MALDI data, 
-#                    that contains three cancer subtypes. 
+#   Author      :   V. Vutov      
+#   Paper       :   Multiple multi-sample testing under arbitrary covariance
+#                   dependency by V. Vutov and T. Dickhaus.
 #
-#    R Version   :       R-4.1.2                                                                
+#   Purpose     :   This script executes the Multi-PFA methodology on the MALDI data
+#                   that contains three cancer subtypes.
+#                   The outcome variable is coded as follows: 1 - ADC, 2 - SqCC, 3 - Pancreatic 
+#                   The independent values (i.e. the intensity values) are stored 
+#                   in the object "mz_values", while the vector mz_vector corresponds
+#                   to column names. 
+#
+#    R Version   :       R-4.2.1                                                                
 #   
 #
 #   Required R packages :  dplyr, ggplot2, gridExtra, VGAM, quantreg, rlang
@@ -35,7 +42,7 @@
     
     source(file.path(".", "codes", "multi_pfa.R"))
     source(file.path(".", "codes", "helper_functions.R"))
-    source(file.path(".", "codes", "PFA.R")) ## A chunk of code taken from pfa::pfa.test()
+    source(file.path(".", "codes", "PFA.R")) ## A chunk of code taken from pfa::pfa.gwas()
 
     load(file.path(".", "data", "maldi_data.rda"))
     
@@ -321,6 +328,8 @@
     
     marg_efron_cl1 <- fdr.control.efron(marg_quant$zval1)
     
+    rejects_panc_vs_adc <- table_results_panc_vs_adc$rejects
+    
     fdr_panc_vs_adc <- data.frame(Multi_PFA = rejects_panc_vs_adc[c(6, 4, 1)],
                                     BH = mmm_cl1$rejects_BH, 
                                     BY = mmm_cl1$rejects_BY,
@@ -332,7 +341,7 @@
                                     BY_Efron_marg = marg_efron_cl1$BY_Efron)
     
     library(xtable)
-    print(xtable(fdr_panc_vs_adc, type = "latex"), file = "./results/filename7a.tex")
+    print(xtable(fdr_panc_vs_adc, type = "latex"), file = "./results/Table7a.tex")
     
     ##########################################
     ## TABLE 7 Panc vs. SqCC 
@@ -348,6 +357,9 @@
     
     marg_efron_cl2 <- fdr.control.efron(marg_quant$zval2)
     
+    rejects_panc_vs_sqcc <- table_results_panc_vs_sqcc$rejects
+    
+    
     fdr_panc_vs_sqcc <- data.frame(Multi_PFA = rejects_panc_vs_sqcc[c(6, 5, 1)],
                                    BH = mmm_cl2$rejects_BH, 
                                    BY = mmm_cl2$rejects_BY,
@@ -358,7 +370,7 @@
                                    BH_Efron_marg = marg_efron_cl2$BH_Efron,
                                    BY_Efron_marg = marg_efron_cl2$BY_Efron)
     
-    print(xtable(fdr_panc_vs_sqcc, type = "latex"), file = "./results/filename7b.tex")
+    print(xtable(fdr_panc_vs_sqcc, type = "latex"), file = "./results/Table7b.tex")
     
     
     

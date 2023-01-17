@@ -73,7 +73,7 @@ marg_cov = function(psi, n, p){
     return(Sigma)
 }
 
-multi_pfa <- function(X, y, tval = list(), reg = "L1", K = list(), m = 0.95, dispersion = FALSE){
+multi_pfa <- function(X, y, tval = list(), reg = "L1", K = list(), m = 0.95){
     
     if(is.vector(y) && length(unique(y)) < 3){
         stop("The outcome variable should be multicategorical!")}
