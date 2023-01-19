@@ -210,9 +210,9 @@ multi_pfa <- function(X, y, tval = list(), reg = "L1", K = list(), m = 0.95){
     if((is.vector(y) && length(unique(y)) == 5) ||
        (is.matrix(y) && dim(y)[2] == 5)){
         
-        if(is.list(t)){  t1 = t[[1]]; t2 = t[[2]]; t3 = t[[3]]; t4 = t[[3]]}
+        if(is.list(t)){  t1 = t[[1]]; t2 = t[[2]]; t3 = t[[3]]; t4 = t[[4]]}
         
-        if(is.list(K)){  k1 = K[[1]]; k2 = K[[2]]; k3 = K[[3]]; k4 = K[[3]]}
+        if(is.list(K)){  k1 = K[[1]]; k2 = K[[2]]; k3 = K[[3]]; k4 = K[[4]]}
         
         s1 <- marg_cov(psi = marginal_models$Psi[seq(from = 1, 
                                                      to  = dim(marginal_models$Psi)[1],

@@ -138,7 +138,7 @@ multi_pfa <- function(X, y, tval = list(), reg = "L1", K = list(), m = 0.95){
     if((is.vector(y) && length(unique(y)) == 4) ||
        (is.matrix(y) && dim(y)[2] == 4)){
         
-        if(!is.empty.list(tval)){  t1 = tval[[1]]; t2 = tval[[2]]; t2 = tval[[3]]} else {
+        if(!is.empty.list(tval)){  t1 = tval[[1]]; t2 = tval[[2]]; t3 = tval[[3]]} else {
             t1 <- rlang::missing_arg(); t2 <- rlang::missing_arg()
             t3 <- rlang::missing_arg()}
         
