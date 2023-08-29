@@ -79,11 +79,11 @@ So, the user needs to recode the outcome variable accordingly before running the
 	    Here, we recommend using either m = 0.9 or the default value.
 	
       A general recommendation: One can run the script first with the default values. 
-       Afterward, based on the obtained results, one can "fine-tune." 
+       Afterward, based on the obtained results, one can fine-tune 
        the parameters for K and tval. 
 	
 	One way to do so, for K, is a possible inspection of the obtained eigenvalues,
-	 i.e. to plot the eigenvalues. The software returns a list for each baseline-category logit.
+	 i.e., to plot the eigenvalues. The software returns a list for each baseline-category logit.
 	 For example, in our data analysis, "multi.pfa.maldi$fdp_class.1_class.3$Lamba".
 	 The object lamba contains all related eigenvalues.
     	
@@ -92,10 +92,10 @@ So, the user needs to recode the outcome variable accordingly before running the
 	
 	Value:
 	
-    Pvalue -  The dependency-unadjusted and two-sided pvalues.
+    Pvalue -  The dependency-unadjusted and two-sided p-values.
            	  Also, the marginal estimates for each x-var (and for each logit pair).
 
-    adjPvalue - The dependency-adjusted pvalues.
+    adjPvalue - The dependency-adjusted p-values.
    
     FDP -       The obtained FDP(t) results for the respected logit pair.
       
