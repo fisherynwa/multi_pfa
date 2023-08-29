@@ -16,8 +16,8 @@ Please reach out to - vkvutov@uni-bremen.de or vkvutov@gmail.com.
    The used dataset has been stored in the subfolder "data". 
    This data file has no column names for the m/z variables, 
    but the object ‘mz_vector’ maps the columns with the m/z values. 
-   For an in-depth description of this dataset; see - https://academic.oup.com/bioinformatics/article/34/7/1215/4604594.
-   This dataset is publicly available in https://gitlab.informatik.uni-bremen.de/digipath/Deep_Learning_for_Tumor_Classification_in_IMS
+   For an in-depth description of this dataset, see - https://academic.oup.com/bioinformatics/article/34/7/1215/4604594.
+   This dataset is publicly available at https://gitlab.informatik.uni-bremen.de/digipath/Deep_Learning_for_Tumor_Classification_in_IMS
    
 
  The folder structure is given as follows:
@@ -27,7 +27,7 @@ a) ./codes/ Here are stored the needed R scripts for
     carrying out the real-data analysis.
  - multi_pfa.R: This script contains the main function "multi_pfa()", and 
    two the suporting functions. Specifically, the latter functions execute 
-   the multiple marginal modelling (MMM), and estimate the marginal covariance matrix among 
+   the multiple marginal modelling (MMM) and estimate the marginal covariance matrix among 
    the empirical estimates (‘mmm’ and ‘marg_cov’).
    Please refer to Section 2.3 in the manuscript. 
     
@@ -36,7 +36,7 @@ a) ./codes/ Here are stored the needed R scripts for
    This script contains a function that runs 
    the principal factor approximation estimator (Section 2.5 in the manuscript).
    
-   - helper_functions: Here are stored some helper functions, that 
+   - helper_functions: Here are stored some helper functions that 
    are used. For example, "getScore" extracts the score function from each marg fit.
 
 b) ./data/ Here is stored the MALDI data.   
@@ -60,7 +60,7 @@ So, the user needs to recode the outcome variable accordingly before running the
 	y - The nominal categorical outcome. Either a vector or a data matrix that consists of outcomes of multinomial (random) counts.  
 
 	tval - A sequence of rejection thresholds. The program accepts default parameters. 
-		   Please note: since the program aims to execute multi-sample comprasions.
+		   Please note: Since the program aims to execute multi-sample comparisons.
 		   'tval' accepts a list of sequences for each baseline-category comparison. 
 		   In our example, we used a three-class outcome variable. 
 		   To this end, in our script, we set two sequences for tvals.
@@ -76,19 +76,19 @@ So, the user needs to recode the outcome variable accordingly before running the
 		
 		
       m - The subset of length m * p of the smallest (in absolute values) Z-statistics. 
-	    Here, we recommend to use either m = 0.9 or the default value.
+	    Here, we recommend using either m = 0.9 or the default value.
 	
-      A general recommendation, one can run the script first with the default values. 
-       Afterwards, based on the obtained results, one can "fine-tune" 
+      A general recommendation: One can run the script first with the default values. 
+       Afterward, based on the obtained results, one can "fine-tune." 
        the parameters for K and tval. 
 	
 	One way to do so, for K, is a possible inspection of the obtained eigenvalues,
 	 i.e. to plot the eigenvalues. The software returns a list for each baseline-category logit.
-	 For example, in our data analysis "multi.pfa.maldi$fdp_class.1_class.3$Lamba".
+	 For example, in our data analysis, "multi.pfa.maldi$fdp_class.1_class.3$Lamba".
 	 The object lamba contains all related eigenvalues.
     	
      Regarding the rejection thresholds, our practice shows that a promising way 
-      to select them is by considering a huge grid of thresholds. 
+      to select them by considering a huge grid of thresholds. 
 	
 	Value:
 	
@@ -99,7 +99,7 @@ So, the user needs to recode the outcome variable accordingly before running the
    
     FDP -       The obtained FDP(t) results for the respected logit pair.
       
-    Zvalue -    The Z-statistics, i.e. the standartized marginal estimates for this logit.
+    Zvalue -    The Z-statistics, i.e., the standardized marginal estimates for this logit.
 	
     Sigma  -    The estimated variance-covariance matrix among the Z-values.
 	
