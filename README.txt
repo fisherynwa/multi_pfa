@@ -4,7 +4,7 @@ ReadMe for the R code of the manuscript "Multiple multi-sample
 testing under arbitrary covariance dependency" by Vladimir Vutov and Thorsten Dickhaus.
 
 Vladimir Vutov is the author of the R scripts.
-In case of any (implementation) questions, comments or suggestions.
+In case of any (implementation) questions, comments, or suggestions.
 Please reach out to - vkvutov@uni-bremen.de or vkvutov@gmail.com.
 
 
@@ -27,14 +27,14 @@ a) ./codes/ Here are stored the needed R scripts for
     carrying out the real-data analysis.
  - multi_pfa.R: This script contains the main function "multi_pfa()", and 
    two the suporting functions. Specifically, the latter functions execute 
-   the multiple marginal modelling (MMM) and estimate the marginal covariance matrix among 
+   the multiple marginal models (MMM) and estimate the marginal covariance matrix among 
    the empirical estimates (‘mmm’ and ‘marg_cov’).
    Please refer to Section 2.3 in the manuscript. 
     
 	
  - PFA.R: This function is taken from pfa::pfa.gwas().
    This script contains a function that runs 
-   the principal factor approximation estimator (Section 2.5 in the manuscript).
+   The principal factor approximation estimator (Section 2.5 in the manuscript).
    
    - helper_functions: Here are stored some helper functions that 
    are used. For example, "getScore" extracts the score function from each marg fit.
@@ -49,7 +49,7 @@ c)./results/ The obtained results in terms of tables and figures will be stored
  Description:
 Program "multi_pfa()" performs the Multi-PFA approach described in the paper. 
 The program considers the last category as a baseline. 
-So, the user needs to recode the outcome variable accordingly before running the software.
+So, users need to recode the outcome variable accordingly before running the software.
 
 	Usage
 	pfa(X, y, tval, reg, K, m)
@@ -65,11 +65,11 @@ So, the user needs to recode the outcome variable accordingly before running the
 		   In our example, we used a three-class outcome variable. 
 		   To this end, in our script, we set two sequences for tvals.
 
-	reg - One needs to pick, which linear estimator for the common factors.
+	reg - One needs to pick which linear estimator for the common factors.
 		  Here, there are two options "L2" or "L1". For more details, we refer to
 		  Equations (13) - (14).
 
-	K - Numbers of common factors (see Equation (10) in the manuscript).
+	K - the number of common factors (see Equation (10) in the manuscript).
         One needs to specify the number of common factors for each logit. However, the program accepts default values.
         Namely, one can run the software without an explicit choice.
   
@@ -85,7 +85,7 @@ So, the user needs to recode the outcome variable accordingly before running the
 	One way to do so, for K, is a possible inspection of the obtained eigenvalues,
 	 i.e., to plot the eigenvalues. The software returns a list for each baseline-category logit.
 	 For example, in our data analysis, "multi.pfa.maldi$fdp_class.1_class.3$Lamba".
-	 The object lamba contains all related eigenvalues.
+	 The object lambda contains all related eigenvalues.
     	
      Regarding the rejection thresholds, our practice shows that a promising way 
       to select them by considering a huge grid of thresholds. 
@@ -97,7 +97,7 @@ So, the user needs to recode the outcome variable accordingly before running the
 
     adjPvalue - The dependency-adjusted p-values.
    
-    FDP -       The obtained FDP(t) results for the respected logit pair.
+    FDP -       The obtained FDP(t) results for the respective logit pair.
       
     Zvalue -    The Z-statistics, i.e., the standardized marginal estimates for this logit.
 	
