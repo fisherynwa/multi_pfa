@@ -15,7 +15,7 @@ Please reach out to - vkvutov@uni-bremen.de or vkvutov@gmail.com.
    Figures (1) - (4) and Tables (5) - (8), just run the main script ‘case_study.R’.
    The used dataset has been stored in the subfolder "data". 
    This data file has no column names for the m/z variables, 
-   but the object ‘mz_vector’ maps the columns with the m/z values. 
+   but the object ‘mz_vector’ contains the relevant information. 
    For an in-depth description of this dataset, see - https://academic.oup.com/bioinformatics/article/34/7/1215/4604594.
    This dataset is publicly available at https://gitlab.informatik.uni-bremen.de/digipath/Deep_Learning_for_Tumor_Classification_in_IMS
    
@@ -26,7 +26,7 @@ Please reach out to - vkvutov@uni-bremen.de or vkvutov@gmail.com.
 a) ./codes/ Here are stored the needed R scripts for
     carrying out the real-data analysis.
  - multi_pfa.R: This script contains the main function "multi_pfa()", and 
-   two the suporting functions. Specifically, the latter functions execute 
+   two supporting functions: they execute 
    the multiple marginal models (MMM) and estimate the marginal covariance matrix among 
    the empirical estimates (‘mmm’ and ‘marg_cov’).
    Please refer to Section 2.3 in the manuscript. 
@@ -36,8 +36,7 @@ a) ./codes/ Here are stored the needed R scripts for
    This script contains a function that runs 
    The principal factor approximation estimator (Section 2.5 in the manuscript).
    
-   - helper_functions: Here are stored some helper functions that 
-   are used. For example, "getScore" extracts the score function from each marg fit.
+   - helper_functions: Here are some helper functions. For example, "getScore" extracts the score function from each marg fit.
 
 b) ./data/ Here is stored the MALDI data.   
 
@@ -49,7 +48,6 @@ c)./results/ The obtained results in terms of tables and figures will be stored
  Description:
 Program "multi_pfa()" performs the Multi-PFA approach described in the paper. 
 The program considers the last category as a baseline. 
-So, users need to recode the outcome variable accordingly before running the software.
 
 	Usage
 	pfa(X, y, tval, reg, K, m)
@@ -57,7 +55,7 @@ So, users need to recode the outcome variable accordingly before running the sof
 	Arguments:
 	X - A data matrix that contains the independent variables.
 
-	y - The nominal categorical outcome. Either a vector or a data matrix that consists of outcomes of multinomial (random) counts.  
+	y - The nominal categorical outcome. Either a vector or a data matrix that consists of the outcome of multinomial (random) counts.  
 
 	tval - A sequence of rejection thresholds. The program accepts default parameters. 
 		   Please note: Since the program aims to execute multi-sample comparisons.
@@ -78,11 +76,11 @@ So, users need to recode the outcome variable accordingly before running the sof
       m - The subset of length m * p of the smallest (in absolute values) Z-statistics. 
 	    Here, we recommend using either m = 0.9 or the default value.
 	
-      A general recommendation: One can run the script first with the default values. 
-       Afterward, based on the obtained results, one can fine-tune 
+      A general recommendation: the user can run the script first with the default values. 
+       Afterward, based on the obtained results, the user can fine-tune 
        the parameters for K and tval. 
 	
-	One way to do so, for K, is a possible inspection of the obtained eigenvalues,
+	A plausible way to do so, for K, is a possible inspection of the obtained eigenvalues,
 	 i.e., to plot the eigenvalues. The software returns a list for each baseline-category logit.
 	 For example, in our data analysis, "multi.pfa.maldi$fdp_class.1_class.3$Lamba".
 	 The object lambda contains all related eigenvalues.
@@ -93,7 +91,7 @@ So, users need to recode the outcome variable accordingly before running the sof
 	Value:
 	
     Pvalue -  The dependency-unadjusted and two-sided p-values.
-           	  Also, the marginal estimates for each x-var (and for each logit pair).
+           	  Furthermore, the marginal estimates for each x-var (and for each logit pair).
 
     adjPvalue - The dependency-adjusted p-values.
    
@@ -106,7 +104,7 @@ So, users need to recode the outcome variable accordingly before running the sof
   
   
   ###############################################################
-   The code for the case_study was run in the following environment:
+   The code for the "case_study" script was run in the following environment:
    
 R version 4.2.1 (2022-06-23 ucrt)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
