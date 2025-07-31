@@ -13,8 +13,8 @@ Please reach out to - vkvutov@uni-bremen.de or vkvutov@gmail.com.
    We store the executable scripts that perform the real-data analysis of MALDI. 
    To reproduce the results illustrated in the manuscript:
    Figures (1) - (4) and Tables (5) - (8), just run the main script ‘case_study.R’.
-   The used dataset has been stored in the subfolder "data". 
-   This data file has no column names for the m/z variables, 
+   The dataset has been stored in the subfolder "data". 
+   This data file does not cointain column names for the m/z variables, 
    but the object ‘mz_vector’ contains the relevant information. 
    For an in-depth description of this dataset, see - https://academic.oup.com/bioinformatics/article/34/7/1215/4604594.
    This dataset is publicly available at https://gitlab.informatik.uni-bremen.de/digipath/Deep_Learning_for_Tumor_Classification_in_IMS
