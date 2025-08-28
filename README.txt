@@ -40,13 +40,13 @@ a) ./codes/ Here are stored the needed R scripts for
 
 b) ./data/ Here is stored the MALDI data.   
 
-c)./results/ The obtained results in terms of tables and figures will be stored
+c)./results/ Your results in terms of tables and figures will be stored
    in this subfolder.
   
   ###############################################################
   
  Description:
-Program "multi_pfa()" performs the Multi-PFA approach described in the paper. 
+This function: "multi_pfa()" performs our Multi-PFA approach. 
 The program considers the last category as a baseline. 
 
 	Usage
@@ -58,32 +58,29 @@ The program considers the last category as a baseline.
 	y - The nominal categorical outcome. Either a vector or a data matrix that consists of the outcome of multinomial (random) counts.  
 
 	tval - A sequence of rejection thresholds. The program accepts default parameters. 
-		   Please note: Since the program aims to execute multi-sample comparisons.
+		   Please note: Since the program executes multi-sample comparisons.
 		   'tval' accepts a list of sequences for each baseline-category comparison. 
 		   In our example, we used a three-class outcome variable. 
 		   To this end, in our script, we set two sequences for tvals.
 
 	reg - One needs to pick which linear estimator for the common factors.
 		  Here, there are two options "L2" or "L1". For more details, we refer to
-		  Equations (13) - (14).
+		  Equations (13) - (14) in the paper.
 
 	K - the number of common factors (see Equation (10) in the manuscript).
         One needs to specify the number of common factors for each logit. However, the program accepts default values.
-        Namely, one can run the software without an explicit choice.
-  
-		
-		
+    	
       m - The subset of length m * p of the smallest (in absolute values) Z-statistics. 
 	    Here, we recommend using either m = 0.9 or the default value.
 	
-      A general recommendation: the user can run the script first with the default values. 
+      A general recommendation: the user can run the script first based on the suggested default values. 
        Afterward, based on the obtained results, the user can fine-tune 
        the parameters for K and tval. 
 	
 	A plausible way to do so, for K, is a possible inspection of the obtained eigenvalues,
 	 i.e., to plot the eigenvalues. The software returns a list for each baseline-category logit.
 	 For example, in our data analysis, "multi.pfa.maldi$fdp_class.1_class.3$Lamba".
-	 The object lambda contains all related eigenvalues.
+	 The lambda object contains all related eigenvalues.
     	
      Regarding the rejection thresholds, our practice shows that a promising way 
       to select them by considering a huge grid of thresholds. 
